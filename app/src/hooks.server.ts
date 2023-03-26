@@ -1,5 +1,6 @@
 // importere pocketbase sdk.
 import PocketBase from "pocketbase";
+import { serializeNonPOJOs } from "./lib/utils";
 
 // Handle funktionen kører på alle sider. Skal bruges til SSR, da den loader hver gang der bliver lavet en request.
 export const handle = async ({ event, resolve }) => { 
@@ -14,7 +15,7 @@ export const handle = async ({ event, resolve }) => {
 
         // forkorter så der ikke behøves at skrives event.locals.pb.authStore.model hele tiden
         // model er en verificeret token, altså en bruger som allerede er logget ind
-        event.locals.user = event.locals.pb.authStore.model;
+        event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
 
         // Hvis brugeren er logget ind, så bliver der hentet en ny token, så brugeren ikke bliver logget ud.
         try {
@@ -25,13 +26,16 @@ export const handle = async ({ event, resolve }) => {
             event.locals.pb.authStore.clear();
 
         }
+        
+    } else {
+        event.locals.user = undefined;
     }
     
     // venter på at resolve funktionen er færdig med at køre.
     const response = await resolve(event);
 
     // Et svar til resolve funktionen.Sætter cookie til at være den nye token. 
-    response.headers.set("set-cookie", event.locals.pb.authStore.exportToCookie());
+    response.headers.set("set-cookie", event.locals.pb.authStore.exportToCookie({ secure: false }));
 
     // returnerer svar til resolve funktionen.
     return response;
