@@ -10,7 +10,8 @@ export const actions = {
             const createUser = await locals.pb.collection("users").create(data);
             console.log("user has been created", createUser)
 
-            throw redirect(303, '/dashboard');
+            locals.pb.authStore.clear();
+            throw redirect(303, '/signin');
             
         } catch (err) {
             console.error("password has to be 5 characters or more");
