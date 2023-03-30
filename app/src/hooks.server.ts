@@ -8,26 +8,19 @@ export const handle = async ({ event, resolve }) => {
     // Laver en ny pocketbase instans, som kan bruges til at hente data fra databasen.
     event.locals.pb = new PocketBase("http://127.0.0.1:8090");
 
-    // Henter data fra cookie (bruger). Hvis der ikke er en cookie, så bliver den sat til en tom string.
+    // Henter data fra cooki e (bruger). Hvis der ikke er en cookie, så bliver den sat til en tom string.
     event.locals.pb.authStore.loadFromCookie(event.request.headers.get("cookie") || "");
 
-    if (event.locals.pb.authStore.isValid) {
-
-        // forkorter så der ikke behøves at skrives event.locals.pb.authStore.model hele tiden
-        // model er en verificeret token, altså en bruger som allerede er logget ind
-        event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
-
-        // Hvis brugeren er logget ind, så bliver der hentet en ny token, så brugeren ikke bliver logget ud.
-        try {
+    try {
+        if (event.locals.pb.authStore.isValid) {
+            // Hvis brugeren er logget ind, så bliver der hentet en ny token, så brugeren ikke bliver logget ud.
             await event.locals.pb.collection("users").authRefresh();
-        } 
-        catch (_) {
-            // Hvis der er en fejl, så bliver brugeren logget ud.
-            event.locals.pb.authStore.clear();
-
+            event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
+            console.log("user is logged in", event.locals.user);
         }
-        
-    } else {
+    } catch (_) {
+        // Hvis der er en fejl, så bliver brugeren logget ud.
+        event.locals.pb.authStore.clear();
         event.locals.user = undefined;
     }
     
