@@ -16,7 +16,6 @@ export const handle = async ({ event, resolve }) => {
             // Hvis brugeren er logget ind, så bliver der hentet en ny token, så brugeren ikke bliver logget ud.
             await event.locals.pb.collection("users").authRefresh();
             event.locals.user = serializeNonPOJOs(event.locals.pb.authStore.model);
-            console.log("user is logged in", event.locals.user);
         }
     } catch (_) {
         // Hvis der er en fejl, så bliver brugeren logget ud.

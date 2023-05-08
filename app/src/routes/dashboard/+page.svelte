@@ -1,12 +1,10 @@
 
 <script lang="ts">
     import "./dashboard.css";
-    import Event from "../../lib/components/event.svelte";
-    
-    export let eventData: any;
-    console.log(eventData)
+    import { navigateEventPage } from "$lib/utils";
 
     export let data;
+
     let showPopup = false;
     let inputType = "text";
 
@@ -18,9 +16,6 @@
         inputType = "date";
     }
 
-    let formattedEventData: any = null;
-    $: formattedEventData = eventData ? JSON.stringify(eventData) : null;
-
 </script>
 
 <div class="window-container">
@@ -28,8 +23,18 @@
 
         <div class="dashboard-container">
             <h2>Velkommen {data.user.username}</h2>
-            <h2>{formattedEventData}</h2>
             <i on:click={togglePopup} class="add-event-btn fa-solid fa-plus"></i>
+
+            {#each data.eventData as e}
+
+                <div>
+                    <span>{e.eventNavn}</span>
+                    <span>{e.datostart}</span>
+                    <span>{e.datoslut}</span>
+                    <button on:click={navigateEventPage}>åbn</button>
+                </div>
+                
+            {/each}
 
             {#if showPopup === true}
             <div class="popup-container">
