@@ -3,12 +3,21 @@
     import "./dashboard.css";
     import { navigateEventPage } from "$lib/utils";
     import Search from "../../lib/components/search.svelte";
-
+    import { timeEndCountDown } from "$lib/store";
+    
     export let data;
+    export let timeDifference: number;
+
+    data.eventData.forEach((element: { datostart: any; datoslut: any; }) => {
+        const startDate = new Date(element.datostart)
+        const endDate = new Date(element.datoslut)
+        timeDifference = endDate.getTime() - startDate.getTime()
+        timeEndCountDown.set(timeDifference)
+    });
 
     let showPopup = false;
     let inputType = "text";
-
+    
     const togglePopup = () => {
         showPopup = true;
     }

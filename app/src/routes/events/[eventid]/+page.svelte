@@ -1,10 +1,10 @@
 <script lang="ts">
     import "./event.css"
-    import { userData } from "$lib/store";
+    import { userData, timeEndCountDown } from "$lib/store";
+    import { tick } from "svelte";
 
     export let data;
     let users: { username: string, score: number}[];
-    let score = 0;
     let showTask1 = true;
     let showTask2 = true;
 
@@ -24,6 +24,43 @@
         showTask2 = false
     }
 
+    let countDownTime: number;
+    let days: number;
+    let hours: number;
+    let minutes: number;
+    let seconds: number;
+    let countDownDone = false;
+
+    timeEndCountDown.subscribe((data => {
+        countDownTime = data
+    }))
+
+    $: countDownTimeNow = `${days}d ${hours}h ${minutes}m ${seconds}s` 
+
+    
+    const interval = setInterval(() => {
+        countDownTime -= 1000;
+        countdown();
+    }, 1000);
+    
+
+    const countdown = () => {
+
+        days = Math.floor(countDownTime / (1000*60*60*24))
+        hours = Math.floor((countDownTime % (1000*60*60*24)) / (1000*60*60))
+        minutes = Math.floor((countDownTime % (1000*60*60)) / (1000*60))
+        seconds = Math.floor((countDownTime % (1000 * 60)) / 1000);
+
+        if (countDownTime < 0) {
+            clearInterval(interval)
+            countDownDone = true;
+        }
+
+    }
+
+    
+
+
 </script>
 
 <div class="window-container">
@@ -31,6 +68,12 @@
         <div class="event-container">
             <div class="countdown">
                 countdown
+                <div>
+                    {countDownTimeNow}
+                    {#if countDownDone}
+                        <p>Event is done!</p>
+                    {/if}
+                </div>
             </div>
 
             <div class="activites">

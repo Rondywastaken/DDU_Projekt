@@ -10,3 +10,5 @@ export const navigateEventPage = () => {
     const id = uuidv4()
     goto(`/events/${id}`)
 } 
+
+
