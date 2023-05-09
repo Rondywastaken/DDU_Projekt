@@ -11,6 +11,11 @@
     height: 30%;
 }
 
+.activites div {
+    display: flex;
+    justify-content: center;
+}
+
 .leaderboard {
     text-align: center;
     height: 59%;

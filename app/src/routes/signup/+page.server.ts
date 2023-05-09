@@ -1,4 +1,5 @@
-import { redirect } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
+import { ClientResponseError } from "pocketbase";
 
 export const actions = {
     signup: async ({ locals, request }) => {
@@ -11,11 +12,14 @@ export const actions = {
             console.log("user has been created", createUser)
 
             locals.pb.authStore.clear();
-            throw redirect(303, '/signin');
+            
             
         } catch (err) {
-            console.error("password has to be 5 characters or more");
-            throw err;
+            if (err instanceof ClientResponseError) {
+                const errorTrue = true;
+                return fail(400, {errorTrue})
+            }
         }
+        throw redirect(303, '/signin');
     }
 }

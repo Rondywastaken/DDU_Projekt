@@ -1,20 +1,22 @@
     <script lang="ts">
-        import { addedMail } from "$lib/store";
-        import { get } from "svelte/store";
+        import { userData } from "$lib/store";
 
-        export let users: string[] | undefined;
+        export let users: string[] | undefined = [];
         let searchterm = "";
+        export let currentAddedMail: string[] = []
 
         const addUser = (user: string) => {
-            let currentAddedMail: string[] = get(addedMail)
+            
             if ( currentAddedMail.includes(user) ) {
                 const index = currentAddedMail.indexOf(user)
                 currentAddedMail.splice(index, 1)
             } else {    
                 currentAddedMail.push(user);
             }
-            addedMail.set(currentAddedMail)
+            userData.set(currentAddedMail)
+
         }
+
     </script>
 
     <input bind:value={searchterm} placeholder="Add friend">

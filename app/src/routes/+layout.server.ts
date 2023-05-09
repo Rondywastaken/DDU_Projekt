@@ -1,7 +1,7 @@
 import { redirect } from "@sveltejs/kit";
 import type { Record } from "pocketbase";
 
-let usernames: string[];
+let usernames: string[] | undefined;
 
 export const load = async ({ locals }) => {
 

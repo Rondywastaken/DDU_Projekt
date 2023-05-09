@@ -1,4 +1,5 @@
-import { redirect } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
+import { ClientResponseError } from "pocketbase";
 
 export const actions = {
     signin: async ({ locals, request }) => {
@@ -12,10 +13,15 @@ export const actions = {
                 data.email.toString(), data.password.toString());
             console.log("user has been authenticated", authUser);
             
-            throw redirect(303, '/dashboard');
+            
         } catch (err) {
-            console.log("Error:", err);
-            throw err;
+            if (err instanceof ClientResponseError) {
+                const errorTrue = true;
+                return fail(400, {errorTrue});
+                
+            }
+            
         } 
+        throw redirect(303, '/dashboard');
     }
 }
