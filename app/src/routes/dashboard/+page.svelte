@@ -2,6 +2,7 @@
 <script lang="ts">
     import "./dashboard.css";
     import { navigateEventPage } from "$lib/utils";
+    import Search from "../../lib/components/search.svelte";
 
     export let data;
 
@@ -44,6 +45,7 @@
                         <input type="text" name="eventNavn" placeholder="Navn på begivenhed" required>
                         <input type={inputType} on:focus={changeType} name="datostart" placeholder="Start dato" required>
                         <input type={inputType} on:focus={changeType} name="datoslut" placeholder="Slut dato" required>
+                        <Search users={data.usernames}/>
                         <button type="submit">Opret</button>
                     </form>
                 </div>

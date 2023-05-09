@@ -1,8 +1,9 @@
 <script lang="ts">
     import "./event.css"
+    import { addedMail } from "$lib/store";
 
-    export let data;
-   
+    console.log(addedMail)
+
 </script>
 
 <div class="window-container">
