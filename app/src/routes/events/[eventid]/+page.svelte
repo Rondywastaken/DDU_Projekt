@@ -65,7 +65,7 @@
 
 <div class="window-container">
     <div class="app-container">
-        <div class="event-container">
+        <div class="events-container">
             <div class="countdown">
                 countdown
                 <div>

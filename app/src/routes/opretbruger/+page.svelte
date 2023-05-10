@@ -18,31 +18,29 @@
 
 <div class="window-container">
     <div class="app-container">
-
-        
-
         <div class="sign-in-up-container">
             <img src="/placeholder.png" alt="logo.png" width=100px height=40px>
-            <h1>Log in</h1>
-            <form action="?/signin" method="POST">
+            <h1>Opret bruger</h1>
+            <form action="?/signup" method="POST">
                 <div class="login-container">
-                    <input name="email" type="email" placeholder="Email">
-                    <input name="password" type="{passwordType}" placeholder="Adgangskode">
+                    <input type="text" name="username" placeholder="Brugernavn">
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="{passwordType}" name="password" placeholder="Adgangskode">
+                    <input type="{passwordType}" name="passwordConfirm" placeholder="Gentag adgangskode">
 
                     {#if passwordshowed == false}
-                    <i on:click={showPassword} class="fa-solid fa-eye-slash"></i>
+                    <i id="eye" on:click={showPassword} class="fa-solid fa-eye-slash"></i>
                     {:else}
-                    <i on:click={showPassword} class="fa-solid fa-eye"></i>
+                    <i id="eye" on:click={showPassword} class="fa-solid fa-eye"></i>
                     {/if}
 
                     {#if form?.errorTrue}
-                        <span style="color:red">Forkert email eller adgangskode</span>
+                        <span style="color:red">Koden skal mindst være 5 tegn!</span>
                     {/if}
-                    <button type="submit">Log in</button>
+                    <button type="submit">Tilmed nu</button>
                 </div>
             </form>
-            <p>Ny til FitFriend? <a href="/opretbruger">Lav en konto</a> </p>
+            <p>Allerede medlem? <a href="/">Log ind</a></p>
         </div>
-        
     </div>
 </div>

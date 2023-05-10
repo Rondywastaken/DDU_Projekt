@@ -19,7 +19,12 @@
     let inputType = "text";
     
     const togglePopup = () => {
-        showPopup = true;
+        if (showPopup == true) {
+            showPopup = false;
+        } else {
+            showPopup = true;
+        }
+        
     }
 
     const changeType = () => {
@@ -32,31 +37,48 @@
     <div class="app-container">
 
         <div class="dashboard-container">
-            <h2>Velkommen {data.user.username}</h2>
-            <i on:click={togglePopup} class="add-event-btn fa-solid fa-plus"></i>
+            <div class="topsection">
+                <h2>Velkommen {data.user.username}</h2>
+                <i on:click={togglePopup} class="fa-solid fa-plus"></i>
+            </div>
 
             {#each data.eventData as e}
 
-                <div>
-                    <span>{e.eventNavn}</span>
-                    <span>{e.datostart}</span>
-                    <span>{e.datoslut}</span>
+            <div class="event-container">
+                <div class="event">
+                    <div>
+                        <span>{e.datostart}</span>
+                        <span>-</span>
+                        <span>{e.datoslut}</span>
+                    </div>
+                    <span class="eventName">{e.eventNavn}</span>
                     <button on:click={navigateEventPage}>åbn</button>
                 </div>
+            </div>
                 
             {/each}
 
             {#if showPopup === true}
             <div class="popup-container">
                 <div class="popup">
-                    <h3>Opret begivenhed</h3>
+                    
                     <form action="?/createEvent" method="POST">
-                        <input type="text" name="eventNavn" placeholder="Navn på begivenhed" required>
-                        <input type={inputType} on:focus={changeType} name="datostart" placeholder="Start dato" required>
-                        <input type={inputType} on:focus={changeType} name="datoslut" placeholder="Slut dato" required>
-                        <Search users={data.usernames}/>
-                        <button type="submit">Opret</button>
+                        <div class="buttons">
+                            <button on:click={togglePopup}>Annuller</button>
+                            <h3>Ny konkurrence</h3>
+                            <button type="submit">Tilføj</button>
+                        </div>
+                        <div class="inputs">
+                            <input type="text" name="eventNavn" placeholder="Titel" required>
+                            <input type={inputType} on:focus={changeType} name="datostart" placeholder="Startdato" required>
+                            <input type={inputType} on:focus={changeType} name="datoslut" placeholder="Slutdato" required>
+                            <div>
+                                <h2>Tilføj venner</h2>
+                                <Search users={data.usernames}/>
+                            </div>
+                        </div>
                     </form>
+
                 </div>
             </div>
             {/if}

@@ -19,7 +19,7 @@
 
     </script>
 
-    <input bind:value={searchterm} placeholder="Add friend">
+    <input bind:value={searchterm} placeholder="Søg">
 
     {#if searchterm != "" && users}
     <div>

@@ -27,17 +27,57 @@ html, body {
     width: 100%;
     align-items: center;
     justify-content: center;
-    border: black solid 2px;
     height: 50%;
 }
 
 .login-container input {
-    width: 50%;
-    padding: .5rem;
+    width: 70%;
+    padding: 1rem;
     outline: none;
     border-radius: .3rem;
     margin-top: .4rem;
-    margin-bottom: .4rem;
+    margin-bottom: .7rem;
     border: black solid 2px;
+    font-size: 20px;
     
+}
+
+.login-container button {
+    width: 56.5%;
+    font-size: 20px;
+    padding: 1.4rem;
+    margin-top: 2rem;
+    background-color: #5EBA7D;
+    border: none;
+    border-radius: 1.4rem;
+    color: white;
+}
+
+.login-container i {
+    position: absolute;
+    top: 316px;
+    left: 1130px;
+    font-size: 24px;
+}
+
+#eye {
+    top: 393px;
+}
+
+.sign-in-up-container h1 {
+    text-align: left;
+    margin-left: 4.2rem;
+    font-size: 40px;
+}
+
+.sign-in-up-container a {
+    color: #5EBA7D;
+    text-decoration: none;
+    margin-left: 6px;
+}
+
+.sign-in-up-container img {
+    display: flex;
+    padding-left: 10px;
+    padding-top: 10px;
 }
