@@ -1,11 +1,46 @@
 .events-container {
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
 
+}
+
+.events {
+    background-color: #179a30;
+    border-radius: .3rem;
+    width: 29%;
+    max-width: 540px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    overflow-y: auto;
+    height: 80%;
+    margin-bottom: 41px;
+    border-top-left-radius: 1.1rem;
+    border-top-right-radius: 1.1rem;
+    overflow: hidden;
 }
 
 .countdown {
     height: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.countdown div {
+    width: 80%;
+}
+
+.countdown div p {
+    background-color: white;
+    padding: 15px;
+    border-radius: 0.9rem;
+    text-align: left;
 }
 
 .activites {
@@ -14,19 +49,68 @@
 
 .activites div {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+
+.task1 {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    margin-top: 10px;
+    width: 74%;
+    border-radius: 0.9rem;
+}
+
+.task2 {
+    display: flex;
+    align-items: center;
+    background: white;
+}
+
+.leaderboard-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .leaderboard {
     text-align: center;
-    height: 59%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 90px;
+    font-size: 20px;
+    background-color: white;
+    width: 80%;
+    border-radius: 0.9rem;
 }
 
 .leaderboard table {
-    border: black solid 2px;
     width: 70%;
 }
+
+.toppart {
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+}
+
+.toppart button {
+    border: none;
+    background-color: #179a30;
+    color: white;
+    font-size: 17px;
+    text-decoration: underline;
+}
+
+.toppart h2 {
+    margin-left: 8.5rem;
+}
+
+
 

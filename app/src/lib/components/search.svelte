@@ -27,9 +27,9 @@
             <tbody>
                 {#each users as user }
                     {#if user.includes(searchterm)}
-                        <tr>
-                            <input type="checkbox" placeholder="hello" on:click={() => addUser(user)}>
+                        <tr style="display: flex; margin-left: 30px;">
                             {user}
+                            <input style="display: flex; flex-direction:row; margin-left: 5px;" type="checkbox" placeholder="hello" on:click={() => addUser(user)}>
                         </tr>
                     {/if}
                 {/each}

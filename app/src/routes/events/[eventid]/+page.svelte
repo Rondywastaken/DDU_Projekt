@@ -2,6 +2,7 @@
     import "./event.css"
     import { userData, timeEndCountDown } from "$lib/store";
     import { tick } from "svelte";
+  import { goto } from "$app/navigation";
 
     export let data;
     let users: { username: string, score: number}[];
@@ -31,11 +32,15 @@
     let seconds: number;
     let countDownDone = false;
 
+    const goBack = () => {
+        goto("/dashboard")
+    }
+
     timeEndCountDown.subscribe((data => {
         countDownTime = data
     }))
 
-    $: countDownTimeNow = `${days}d ${hours}h ${minutes}m ${seconds}s` 
+    $: countDownTimeNow = `${days} dage, ${hours} timer, ${minutes} minutter, ${seconds} sekunder tilbage` 
 
     
     const interval = setInterval(() => {
@@ -66,10 +71,15 @@
 <div class="window-container">
     <div class="app-container">
         <div class="events-container">
+            <div class="events">
+                <div class="toppart">
+                    <button on:click={goBack}>Tilbage</button>
+                    <h2>Konkurrence</h2>
+                </div>
+
             <div class="countdown">
-                countdown
                 <div>
-                    {countDownTimeNow}
+                    <p>{countDownTimeNow}</p> 
                     {#if countDownDone}
                         <p>Event is done!</p>
                     {/if}
@@ -77,31 +87,31 @@
             </div>
 
             <div class="activites">
-                activites
                 <div>
                     {#if showTask1}
-                        <div>task 1
-                            <p>Go down and train</p>
-                            <button on:click={() => completeTask1(data.user.username)}>Completed</button>
+                        <div class="task1">Opgave 1
+                            <p style="font-size: 17px;">Gå ned og træn</p>
+                            <button style="border-radius: 0.9rem; padding: 10px; width: 20%; border: none; background-color:#D5D5D5;" on:click={() => completeTask1(data.user.username)}>Gjort</button>
                         </div>
                     {/if}
                     {#if showTask2}
-                        <div>task 2
-                            <p>Go for a run</p>
-                            <button on:click={() => completeTask2(data.user.username)}>Completed</button>
+                        <div class="task1">Opgave 2
+                            <p style="font-size: 17px;">Løb en tur</p>
+                            <button style=" border-radius: 0.9rem; padding: 10px; width: 20%; border: none; background-color: #D5D5D5;" on:click={() => completeTask2(data.user.username)}>Gjort</button>
                         </div>
                     {/if}
                     {#if showTask1 == false && showTask2 == false}
-                        <p>You have completed all task for today!</p>
+                        <p style="font-size: 20px; color: white;">Du har klaret alle opgaver for i dag!</p>
                     {/if}
                 </div>
             </div>
+            <div class="leaderboard-container">
             <div class="leaderboard">
-                leaderboard
+                Leaderboard
                 <table>
                     <tr>
                         <th>Users</th>
-                        <th>Score</th>
+                        <th>Point</th>
                     </tr>
                 {#each users as u }
                     <tr>
@@ -110,7 +120,9 @@
                     </tr>  
                 {/each}
                 </table>
-            </div>    
+            </div>  
+        </div>
+        </div>  
         </div>
     </div>
 </div>

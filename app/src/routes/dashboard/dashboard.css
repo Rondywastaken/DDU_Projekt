@@ -10,14 +10,14 @@
 }
 
 .dashboard-container form button {
-    padding: .7rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    outline: none;
-    border: none;
-    background-color: #5EBA7D;
-    border-radius: 2rem;
-    font-size: large;
+  padding: .7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  outline: none;
+  border: none;
+  background-color: #179a30;
+  border-radius: 2rem;
+  font-size: large;
 
 }
 
@@ -33,7 +33,7 @@
 }
 
 .popup {
-  background-color: #5EBA7D;
+  background-color: #179a30;
   border-radius: .3rem;
   width: 29%;
   max-width: 540px;
@@ -42,7 +42,7 @@
   position: relative;
   overflow-y: auto;
   height: 75%;
-  margin-bottom: 42px;
+  margin-bottom: 41px;
   border-top-left-radius: 1.1rem;
   border-top-right-radius: 1.1rem;
 }
@@ -89,7 +89,7 @@
 
 .inputs div input {
   width: 85%;
-  background-color: #5EBA7D;
+  background-color: #179a30;
   color: black;
 }
 
@@ -146,6 +146,7 @@
   align-items: start;
   margin-top: 10px;
   border-radius: .6rem;
+  width: 60%;
 }
 
 .event div {
@@ -155,16 +156,35 @@
   
 }
 
+.event div span {
+  font-size: 22px;
+}
+
 .event button {
   margin-left: 6.9px;
   color: white; 
   border: none;
   background: none;
+  font-size: 16px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.event button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+.event button i {
+  padding-right: 3px;
 }
 
 .eventName {
   margin-left: 12px;
   color: white;
+  font-size: 25px;
 }
 
   

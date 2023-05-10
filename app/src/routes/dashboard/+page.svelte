@@ -52,7 +52,7 @@
                         <span>{e.datoslut}</span>
                     </div>
                     <span class="eventName">{e.eventNavn}</span>
-                    <button on:click={navigateEventPage}>åbn</button>
+                    <button on:click={navigateEventPage}><i class="fa-light fa-greater-than"></i>Åbn</button>
                 </div>
             </div>
                 
