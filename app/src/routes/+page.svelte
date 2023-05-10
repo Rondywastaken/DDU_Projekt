@@ -22,7 +22,7 @@
         
 
         <div class="sign-in-up-container">
-            <img src="/logo-fitfriend.png" alt="logo.png" width="197.85" height="65">
+            <img src="/logo.png" alt="logo.png" width="197.85" height="65">
             <h1>Log in</h1>
             <form action="?/signin" method="POST">
                 <div class="login-container">

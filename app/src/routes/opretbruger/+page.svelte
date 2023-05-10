@@ -19,7 +19,7 @@
 <div class="window-container">
     <div class="app-container">
         <div class="sign-in-up-container">
-            <img src="/logo-fitfriend.png" alt="logo.png" width="197.85" height="65">
+            <img src="/logo.png" alt="logo.png" width="197.85" height="65">
             <h1>Opret bruger</h1>
             <form action="?/signup" method="POST">
                 <div class="login-container">
