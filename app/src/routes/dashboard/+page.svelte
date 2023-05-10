@@ -65,7 +65,7 @@
                     <form action="?/createEvent" method="POST">
                         <div class="buttons">
                             <button on:click={togglePopup}>Annuller</button>
-                            <h3>Ny konkurrence</h3>
+                            <h3 style="color:white;">Ny konkurrence</h3>
                             <button type="submit">Tilføj</button>
                         </div>
                         <div class="inputs">
