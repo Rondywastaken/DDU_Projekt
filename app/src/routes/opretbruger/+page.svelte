@@ -37,7 +37,7 @@
                     {#if form?.errorTrue}
                         <span style="color:red">Koden skal mindst være 5 tegn!</span>
                     {/if}
-                    <button type="submit">Tilmed nu</button>
+                    <button type="submit">Tilmeld nu</button>
                 </div>
             </form>
             <p>Allerede medlem? <a href="/">Log ind</a></p>

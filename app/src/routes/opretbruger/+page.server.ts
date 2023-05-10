@@ -20,6 +20,6 @@ export const actions = {
                 return fail(400, {errorTrue})
             }
         }
-        throw redirect(303, '/signin');
+        throw redirect(303, '/');
     }
 }
